@@ -1,36 +1,38 @@
-## Overview 
-This is a Flask web app that summarizes text from uploaded .txt files using Groq API. It displays both original and summarized text on the webpage.
+# Text Summarizer Application
+
+## Overview
+This is a Flask web application that summarizes text from uploaded .txt files using the Groq API. The application features a modern, responsive interface that displays both the original and summarized text side by side.
 
 ## Core Functionalities
-* Upload .txt file
-* Summarize text with Groq 
-* Display original and summarized text
-* Error handling for invalid file types
-* Responsive web interface
+* Upload .txt files with validation
+* Real-time text summarization using Groq API
+* Side-by-side display of original and summarized text
+* Error handling for invalid file types and API failures
+* Responsive web interface with modern design
+* Welcome page with feature highlights
+* File upload page with drag-and-drop support
 
-## Technical Stack 
+## Technical Stack
 * Programming Language: Python 3.8+
-* Web framework: Flask
-* Frontend: HTML, CSS, JavaScript
+* Web Framework: Flask
+* Frontend: HTML5, CSS3, JavaScript
 * API: Groq
-* Version Control: Git and Github
+* Version Control: Git and GitHub
 * IDE: Cursor AI
 
 ## Project Structure
 ```
 project/
-├── app/
-│   ├── __init__.py
-│   ├── routes.py
-│   ├── static/
-│   │   ├── css/
-│   │   └── js/
-│   └── templates/
-│       └── index.html
-├── config.py
+├── app.py
+├── templates/
+│   ├── index.html
+│   └── upload.html
+├── static/
+│   ├── css/
+│   └── js/
+├── uploads/
 ├── requirements.txt
 ├── .env
-├── .gitignore
 └── README.md
 ```
 
@@ -61,26 +63,38 @@ pip install -r requirements.txt
 
 5. Run the application:
 ```bash
-flask run
+python3 app.py
 ```
 
 ## API Integration
 * The application uses Groq API for text summarization
-* API key must be securely stored in environment variables
+* API key is securely stored in environment variables
 * Rate limiting and error handling implemented for API calls
+* Configurable summarization parameters
 
 ## Security Considerations
-* File upload validation
-* API key protection
+* File upload validation for .txt files only
+* API key protection through environment variables
 * Input sanitization
 * Error handling for invalid inputs
+* Secure file handling
+
+## User Interface
+* Welcome page with feature highlights
+* Upload page with drag-and-drop support
+* Side-by-side display of original and summarized text
+* Responsive design for all devices
+* Clear error and success messages
+* Modern, clean aesthetic
 
 ## Future Enhancements
-* Support for multiple file formats
+* Support for multiple file formats (PDF, DOCX, etc.)
 * Customizable summary length
-* User authentication
+* User authentication and account management
 * Save and load previous summaries
 * Multiple language support
+* Batch file processing
+* Export summaries to different formats
 
 ## Contributing
 1. Fork the repository

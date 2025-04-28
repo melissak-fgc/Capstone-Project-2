@@ -6,49 +6,87 @@
     <title>Text Summarizer</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            background-color: #f5f5f5;
         }
-        textarea {
-            width: 100%;
-            height: 200px;
-            margin: 10px 0;
-            padding: 10px;
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
         }
-        button {
-            padding: 10px 20px;
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .description {
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .nav-button {
+            display: inline-block;
+            padding: 12px 24px;
             background-color: #007bff;
             color: white;
-            border: none;
+            text-decoration: none;
             border-radius: 5px;
-            cursor: pointer;
+            transition: background-color 0.3s;
         }
-        button:hover {
+        .nav-button:hover {
             background-color: #0056b3;
         }
-        .summary {
-            margin-top: 20px;
-            padding: 15px;
-            border: 1px solid #ddd;
+        .features {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            text-align: left;
+        }
+        .feature {
+            padding: 20px;
+            background-color: #f8f9fa;
             border-radius: 5px;
+            border: 1px solid #dee2e6;
+        }
+        .feature h3 {
+            color: #333;
+            margin-top: 0;
+        }
+        .feature p {
+            color: #666;
+            margin-bottom: 0;
         }
     </style>
 </head>
 <body>
-    <h1>Text Summarizer</h1>
-    <form method="POST">
-        <textarea name="text" placeholder="Enter text to summarize..."></textarea>
-        <br>
-        <button type="submit">Summarize</button>
-    </form>
-    
-    {% if summary %}
-    <div class="summary">
-        <h2>Summary:</h2>
-        <p>{{ summary }}</p>
+    <div class="container">
+        <h1>Welcome to Text Summarizer</h1>
+        <p class="description">
+            Upload your text files and get instant AI-powered summaries. 
+            Our tool helps you quickly understand the key points of any text document.
+        </p>
+        
+        <a href="{{ url_for('upload_file') }}" class="nav-button">Start Summarizing</a>
+
+        <div class="features">
+            <div class="feature">
+                <h3>Easy Upload</h3>
+                <p>Simply upload your .txt files and let our AI do the work.</p>
+            </div>
+            <div class="feature">
+                <h3>Quick Summaries</h3>
+                <p>Get concise summaries of your text in seconds.</p>
+            </div>
+            <div class="feature">
+                <h3>Side by Side View</h3>
+                <p>Compare original text and summary side by side.</p>
+            </div>
+        </div>
     </div>
-    {% endif %}
 </body>
 </html> 

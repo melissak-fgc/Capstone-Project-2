@@ -35,7 +35,11 @@ def summarize_text(text):
     except requests.exceptions.RequestException as e:
         return f"Error: {str(e)}"
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
         # Check if a file was uploaded
