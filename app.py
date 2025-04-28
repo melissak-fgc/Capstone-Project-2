@@ -1,12 +1,17 @@
 import requests 
 from flask import Flask, render_template, request
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 app = Flask(__name__)
 
-df summarize_text(text):
+def summarize_text(text):
     url = "https://api.groq.com/openai/v1/chat/completions"
     headers = {
-        "Authorization": "Bearer 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",
+        "Authorization": f"Bearer {os.getenv('GROQ_API_KEY')}",
         "Content-Type": "application/json"
     }
     data = {
@@ -14,14 +19,24 @@ df summarize_text(text):
         "messages": [
             {"role": "user", "content": text}
         ],
-        "temperature" : 0.5
+        "temperature": 0.5
     }
-    response = requests.post(url, headers=headers, json=data)
-    if response.status_code == 200:
+    try:
+        response = requests.post(url, headers=headers, json=data)
+        response.raise_for_status()  # Raises an HTTPError for bad responses
         return response.json()["choices"][0]["message"]["content"]
-    else:
-        return "Summarization failed."
+    except requests.exceptions.RequestException as e:
+        return f"Error: {str(e)}"
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        text = request.form.get('text', '')
+        if text:
+            summary = summarize_text(text)
+            return render_template('index.html', summary=summary)
+    return render_template('index.html')
 
 if __name__ == "__main__":
-    app.run(debug = True)
+    app.run(debug=True)
     
